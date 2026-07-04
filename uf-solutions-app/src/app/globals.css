@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  /* Light Mode (Extracted from the Magnific Template layers) */
+  --background: #ffffff;
+  --foreground: #090d1a;       /* Template Deep Obsidian Text */
+  
+  --primary: #1d4ed8;          /* Brand Royal Blue (Hero Section text / Key accents) */
+  --secondary: #0a0f24;        /* Dark Midnight Indigo (Header Block background) */
+  --accent: #2563eb;           /* Electric Hyper Blue (Active Buttons / Hover fill) */
+  
+  --card: #f8fafc;             /* Crisp Ice-Slate (Service item background grids) */
+  --border: #e2e8f0;           /* Clean separation lines */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  
+  --font-sans: var(--font-geist-sans), Arial, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Semantic Dynamic Dark Mode Overrides */
+    --background: #050814;       /* Inverts canvas to template Dark Midnight Navy */
+    --foreground: #f1f5f9;       /* Light text element contrast */
+    --primary: #3b82f6;          /* Luminescent Blue active text */
+    --secondary: #0f172a;        /* Elevated darker panels */
+    --accent: #60a5fa;           /* Interactive button hover target */
+    --card: #0b0f19;             /* Card grid inset containment */
+    --border: #1e293b;           /* Dimmed border boundaries */
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
