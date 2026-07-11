@@ -132,7 +132,7 @@ interface TeamMember {
 
 function TeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300">
+    <div className="h-full bg-white/[0.02] border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={member.avatar}
@@ -141,20 +141,24 @@ function TeamCard({ member }: { member: TeamMember }) {
         width={88}
         height={88}
         loading="lazy"
-        className="w-22 h-22 rounded-full border border-white/10 mb-5"
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-white/10 mb-4 sm:mb-5 shrink-0 object-cover"
       />
-      <h3 className="text-lg font-bold text-white">{member.name}</h3>
-      <p className="text-xs text-[var(--accent)] uppercase tracking-widest font-semibold mt-1 mb-4">
+      <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+        {member.name}
+      </h3>
+      <p className="text-[11px] sm:text-xs text-[var(--accent)] uppercase tracking-widest font-semibold mt-1 mb-3 sm:mb-4">
         {member.role}
       </p>
-      <p className="text-sm text-white/55 leading-relaxed mb-5">{member.bio}</p>
+      <p className="text-sm text-white/55 leading-relaxed mb-5 flex-1">
+        {member.bio}
+      </p>
       <a
         href={`mailto:${member.email}`}
         aria-label={`Email ${member.name}`}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-white/50 hover:text-[var(--accent)] transition-colors"
+        className="inline-flex items-center gap-2 text-xs font-semibold text-white/50 hover:text-[var(--accent)] transition-colors max-w-full mt-auto"
       >
-        <Mail size={13} aria-hidden="true" />
-        {member.email}
+        <Mail size={13} aria-hidden="true" className="shrink-0" />
+        <span className="truncate">{member.email}</span>
       </a>
     </div>
   );
@@ -246,32 +250,32 @@ export default function AboutPage() {
 
   const team: TeamMember[] = [
     {
-      name: "Alex Rivera",
-      role: "Founder & Lead Engineer",
-      bio: "12 years building production systems across fintech and healthcare before founding the studio.",
-      avatar: "https://ui-avatars.com/api/?name=Alex+Rivera&background=1e293b&color=fff",
-      email: "alex@example.com",
-    },
-    {
-      name: "Priya Shah",
-      role: "Head of Product Design",
-      bio: "Leads UX strategy and interface design, translating complex workflows into simple screens.",
-      avatar: "https://ui-avatars.com/api/?name=Priya+Shah&background=1e293b&color=fff",
-      email: "priya@example.com",
-    },
-    {
-      name: "Marcus Chen",
-      role: "Lead Full-Stack Developer",
+      name: "Jeffrey M. Aspiras",
+      role: "Co-Founder & Lead Backend Developer",
       bio: "Specializes in scalable backend architecture and clean API design for high-traffic platforms.",
-      avatar: "https://ui-avatars.com/api/?name=Marcus+Chen&background=1e293b&color=fff",
-      email: "marcus@example.com",
+      avatar: "https://ui-avatars.com/api/?name=JA&background=1e293b&color=fff",
+      email: "jeffreymercadoaspiras2005@gmail.com",
     },
     {
-      name: "Dana Okafor",
-      role: "Mobile Engineering Lead",
-      bio: "Ships native-quality cross-platform apps and owns the QA process from prototype to app store.",
-      avatar: "https://ui-avatars.com/api/?name=Dana+Okafor&background=1e293b&color=fff",
-      email: "dana@example.com",
+      name: "Clarence M. Sabangan",
+      role: "Founder & Full-Stack Developer",
+      bio: "Provides overall company leadership while driving full-stack system architectural design and infrastructure strategy.",
+      avatar: "https://ui-avatars.com/api/?name=CS&background=1e293b&color=fff",
+      email: "clarencesabangan@gmail.com",
+    },
+    {
+      name: "Rafhael B. Maglunob",
+      role: "Lead Full-Stack Developer",
+      bio: "Leads UX strategy and interface design, translating complex workflows into simple screens.",
+      avatar: "https://ui-avatars.com/api/?name=RM&background=1e293b&color=fff",
+      email: "rafhaelmaglunob@gmail.com",
+    },
+    {
+      name: "Khyl Arcilla",
+      role: "Digital Graphics Designer",
+      bio: "Crafts compelling visual identities, digital assets, and high-impact graphic layouts that elevate brand presence.",
+      avatar: "https://ui-avatars.com/api/?name=KA&background=1e293b&color=fff",
+      email: "khylarcilla@gmail.com",
     },
   ];
 
@@ -639,7 +643,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 items-stretch">
               {team.map((member) => (
                 <TeamCard key={member.name} member={member} />
               ))}
