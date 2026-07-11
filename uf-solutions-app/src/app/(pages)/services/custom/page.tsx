@@ -4,35 +4,34 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  Globe,
-  Newspaper,
-  ShoppingCart,
-  HeartPulse,
-  Wallet,
-  LayoutDashboard,
+  Wrench,
+  Terminal,
+  MonitorSmartphone,
+  Puzzle,
+  Workflow,
+  Cpu,
   Search,
   PenTool,
   Code,
   TestTube2,
   Rocket,
-  Wrench,
   ShieldCheck,
   Zap,
-  Gauge,
   Layers,
-  Atom,
+  Gauge,
+  HardDrive,
   Server,
   Database,
   TrendingUp,
 } from "lucide-react";
 
 /**
- * SEO NOTES (same conventions as the homepage / about page)
+ * SEO NOTES (same conventions as the homepage / about page / other service pages)
  * -----------------------------------------------------------
  * - No "use client": this is a static informational page, so it stays a
  *   Server Component and can export `metadata` + render JSON-LD directly.
- * - Unique `metadata` for this exact URL (/services/web) — never copy the
- *   homepage's title/description onto a service page.
+ * - Unique `metadata` for this exact URL (/services/custom) — never copy
+ *   another service page's title/description.
  * - Two JSON-LD blocks: a `Service` graph describing the sub-services you
  *   offer (helps Google understand what's actually for sale here), and a
  *   `FAQPage` graph built from the same questions rendered on the page
@@ -44,47 +43,48 @@ import {
 
 const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
 const SITE_NAME = "Your Company Name"; // TODO: replace with your real business name
-const OG_IMAGE = `${SITE_URL}/og-services-web.jpg`; // TODO: add a real 1200x630 social preview image
+const OG_IMAGE = `${SITE_URL}/og-services-custom.jpg`; // TODO: add a real 1200x630 social preview image
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `Website Design & Web Application Development | ${SITE_NAME}`,
+  title: `Custom Software Development | ${SITE_NAME}`,
   description:
-    "Custom website design and web application development: brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling — built to fit your operations, not a template.",
+    "Bespoke software for internal tooling and niche business problems that off-the-shelf systems can't solve — offline-first desktop apps, terminal and CLI tools, automation scripts, and purpose-built systems of any shape.",
   keywords: [
-    "website design services",
-    "web application development",
-    "custom e-commerce development",
-    "clinic management system development",
-    "financial tracker web app",
+    "custom software development",
     "internal tooling development",
-    "business website development",
+    "bespoke software solutions",
+    "offline-first desktop app development",
+    "terminal app development",
+    "cli tool development",
+    "business automation software",
+    "niche software solutions",
   ],
   alternates: {
-    canonical: "/services/web",
+    canonical: "/services/custom",
   },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/services/web`,
+    url: `${SITE_URL}/services/custom`,
     siteName: SITE_NAME,
-    title: `Website Design & Web Application Development | ${SITE_NAME}`,
+    title: `Custom Software Development | ${SITE_NAME}`,
     description:
-      "From brochure sites and blogs to e-commerce, clinic management systems, financial trackers, and internal tooling — custom-built web solutions for your business.",
+      "Internal tooling, offline-first desktop apps, terminal tools, and purpose-built systems for the niche problems generic software can't solve.",
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `Web design and development services at ${SITE_NAME}`,
+        alt: `Custom software development services at ${SITE_NAME}`,
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `Website Design & Web Application Development | ${SITE_NAME}`,
+    title: `Custom Software Development | ${SITE_NAME}`,
     description:
-      "Custom brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal tooling — built around your business.",
+      "Internal tooling, offline-first desktop apps, terminal tools, and purpose-built systems for the niche problems generic software can't solve.",
     images: [OG_IMAGE],
   },
   robots: {
@@ -172,114 +172,114 @@ function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
 /* Page                                                                   */
 /* -------------------------------------------------------------------- */
 
-export default function WebServicesPage() {
+export default function CustomServicesPage() {
   const offerings: OfferingCardProps[] = [
     {
-      title: "Brochure & Marketing Websites",
-      desc: "Fast, on-brand sites that clearly explain who you are and turn visitors into inquiries.",
-      icon: Globe,
-      bullets: [
-        "Custom design, not a recycled template",
-        "Mobile-first, fast-loading pages",
-        "Built-in on-page SEO foundations",
-        "No CMS or page-builder lock-in — clean code you fully own",
-      ],
-    },
-    {
-      title: "Blogs & Content Platforms",
-      desc: "A fast, SEO-friendly publishing setup — built with code and a managed database, not a bloated CMS.",
-      icon: Newspaper,
-      bullets: [
-        "Built on Next.js for speed and search visibility",
-        "Content stored in Supabase — no CMS plugins or lock-in",
-        "SEO-friendly URLs, metadata, and sitemaps",
-        "Categories, tags, and related-post logic",
-      ],
-    },
-    {
-      title: "E-Commerce Applications",
-      desc: "Storefronts built around your actual catalog, pricing rules, and checkout flow.",
-      icon: ShoppingCart,
-      bullets: [
-        "Custom product, variant, and inventory logic",
-        "Secure payment and order processing",
-        "Admin dashboard for orders and stock",
-        "Built to handle traffic spikes at launch or sale time",
-      ],
-    },
-    {
-      title: "Clinic & Healthcare Management Systems",
-      desc: "Scheduling, patient records, and checkout flows tailored to how your clinic actually runs.",
-      icon: HeartPulse,
-      bullets: [
-        "Appointment scheduling and reminders",
-        "Patient records and visit history",
-        "Role-based access for staff vs. providers",
-        "Built with data privacy in mind from day one",
-      ],
-    },
-    {
-      title: "Financial Trackers & Dashboards",
-      desc: "Custom tools for tracking revenue, expenses, or portfolio data in real time.",
-      icon: Wallet,
-      bullets: [
-        "Live dashboards and custom reports",
-        "Integrations with your existing data sources",
-        "Role-based permissions for sensitive data",
-        "Export to CSV/PDF for accounting and audits",
-      ],
-    },
-    {
-      title: "Internal Tooling & Admin Panels",
-      desc: "Purpose-built software for the operational workflows generic tools can't handle.",
-      icon: LayoutDashboard,
+      title: "Internal Business Tooling",
+      desc: "Software built around how your team actually works, replacing spreadsheets, manual steps, and workarounds.",
+      icon: Wrench,
       bullets: [
         "Custom workflows mapped to your team's process",
         "Automates manual, repetitive data entry",
-        "Scales as headcount and complexity grow",
+        "Role-based access for different teams",
         "Built to be maintained by your team long-term",
+      ],
+    },
+    {
+      title: "Offline-First Desktop Apps",
+      desc: "Native or cross-platform desktop software that keeps working with no or unreliable internet.",
+      icon: MonitorSmartphone,
+      bullets: [
+        "Local-first data storage with optional sync",
+        "Works on Windows, macOS, and Linux",
+        "No dependency on a live connection to function",
+        "Packaged and distributed for easy installation",
+      ],
+    },
+    {
+      title: "Terminal & CLI Tools",
+      desc: "Fast, scriptable command-line tools for developers, ops teams, or power users who live in the terminal.",
+      icon: Terminal,
+      bullets: [
+        "Scriptable and pipeable, built for automation",
+        "Cross-platform binaries, no runtime hassle",
+        "Config-driven for repeatable workflows",
+        "Integrates with your existing scripts and CI",
+      ],
+    },
+    {
+      title: "Niche & Bespoke Solutions",
+      desc: "When there's no off-the-shelf product for the problem, we build software shaped around exactly what you need.",
+      icon: Puzzle,
+      bullets: [
+        "Built from your actual process, not a template",
+        "Handles edge cases generic software ignores",
+        "No paying for features you'll never use",
+        "Grows and adapts as your requirements change",
+      ],
+    },
+    {
+      title: "Process Automation",
+      desc: "Scripts and systems that take repetitive, error-prone manual work off your team's plate.",
+      icon: Workflow,
+      bullets: [
+        "Scheduled jobs, batch processing, and pipelines",
+        "Integrations between tools that don't talk to each other",
+        "Alerting and logging so you know what happened",
+        "Designed to run unattended and reliably",
+      ],
+    },
+    {
+      title: "Systems Integration & Modernization",
+      desc: "Connecting or replacing legacy systems so your tools work together instead of around each other.",
+      icon: Cpu,
+      bullets: [
+        "Bridges between legacy and modern systems",
+        "Data migration without losing history",
+        "APIs built around your existing infrastructure",
+        "Incremental rollout to avoid disrupting operations",
       ],
     },
   ];
 
   const techStack = [
     {
-      icon: Atom,
-      title: "Frontend — Next.js & React",
-      desc: "The same framework and library trusted by the world's largest platforms, tuned for fast load times and strong SEO out of the box.",
+      icon: HardDrive,
+      title: "Desktop & CLI — Native & Cross-Platform Toolchains",
+      desc: "The right tool for the job — from cross-platform desktop frameworks to compiled, single-binary CLI tools — chosen based on your performance and distribution needs.",
     },
     {
       icon: Server,
       title: "Backend — NestJS + Fastify (TypeScript)",
-      desc: "A structured, fully type-safe API layer that stays maintainable as your application's logic grows in complexity.",
+      desc: "A structured, fully type-safe API layer for any tool that needs a server, sync, or multi-user access.",
     },
     {
       icon: Database,
-      title: "Database — Supabase",
-      desc: "A managed Postgres database that gets your system to production without upfront infrastructure spend or a dedicated DevOps hire.",
+      title: "Database — Supabase or Local-First Storage",
+      desc: "A managed Postgres database for connected tools, or embedded local storage for fully offline software — matched to how the tool is actually used.",
     },
   ];
 
   const whyCustom = [
     {
-      icon: Gauge,
-      title: "Built for Speed",
-      desc: "Optimized for Core Web Vitals — fast load times that keep visitors around and support your search rankings.",
+      icon: Zap,
+      title: "Solves the Actual Problem",
+      desc: "Built around your specific workflow and edge cases, not the generic 80% a mass-market tool covers.",
     },
     {
       icon: ShieldCheck,
       title: "Secure by Default",
-      desc: "Modern authentication, data handling, and hosting practices baked in from the first commit.",
+      desc: "Modern authentication, data handling, and access control baked in from the first commit.",
     },
     {
       icon: Layers,
       title: "Scales With You",
-      desc: "Clean, modular architecture that can grow from an MVP into a full platform without a rebuild.",
+      desc: "Clean, modular architecture that can grow from a single script into a full internal platform.",
     },
     {
-      icon: Zap,
-      title: "No Template Lock-In",
-      desc: "You own the codebase outright — no proprietary page builder holding your site hostage.",
+      icon: Gauge,
+      title: "No Subscription Bloat",
+      desc: "You own the software outright — no per-seat SaaS pricing for a tool built just for you.",
     },
   ];
 
@@ -287,12 +287,12 @@ export default function WebServicesPage() {
     {
       icon: Search,
       title: "Discovery",
-      desc: "We map your goals, users, and any existing systems the new site or app needs to work with.",
+      desc: "We map the actual problem, workflow, and any existing systems or data the tool needs to work with.",
     },
     {
       icon: PenTool,
-      title: "UX / UI Design",
-      desc: "Wireframes and clickable prototypes so you can see and adjust the experience before development starts.",
+      title: "Solution Design",
+      desc: "We sketch out how the tool should work — interface, data flow, and edge cases — before writing code.",
     },
     {
       icon: Code,
@@ -302,12 +302,12 @@ export default function WebServicesPage() {
     {
       icon: TestTube2,
       title: "QA & Testing",
-      desc: "Cross-browser, cross-device testing plus performance and accessibility checks before launch.",
+      desc: "Testing against real workflows and edge cases, including offline and failure scenarios where relevant.",
     },
     {
       icon: Rocket,
-      title: "Launch",
-      desc: "Staged deployment, DNS/hosting setup, and a smoke-tested go-live with minimal downtime.",
+      title: "Deployment",
+      desc: "Packaging and rollout to your team's machines, servers, or environment with minimal disruption.",
     },
     {
       icon: Wrench,
@@ -318,34 +318,34 @@ export default function WebServicesPage() {
 
   const faqs: FaqItem[] = [
     {
-      question: "How long does it take to build a website or web application?",
+      question: "What counts as \"custom software\" here?",
       answer:
-        "A brochure or blog site typically takes 2–4 weeks from kickoff to launch. Custom web applications — e-commerce, clinic management systems, financial trackers, or internal tools — usually run 6–12 weeks depending on scope, integrations, and how much custom logic is involved. You'll get a firm timeline after the discovery phase.",
+        "Anything that doesn't fit neatly into a website, mobile app, or off-the-shelf SaaS product. That includes internal tools, offline-first desktop apps, terminal and CLI utilities, automation scripts, and one-off systems built around a specific business problem — if a generic tool doesn't solve it well, this is the service that does.",
     },
     {
-      question: "Do you build on a page builder or platform like WordPress or Shopify?",
+      question: "We don't have internet access where this tool needs to run — is that a problem?",
       answer:
-        "It depends on the project. Simple brochure sites can sometimes be well served by a managed platform, and we'll say so if that's the better fit for your budget. For anything with custom business logic — e-commerce with non-standard rules, clinic scheduling, financial dashboards, internal tools — we build custom so the software matches your process instead of forcing your process to match the software.",
+        "No — offline-first is one of our core use cases. We build software that stores and works with data locally, with syncing added only where and if it's actually needed, so the tool keeps working regardless of connectivity.",
     },
     {
-      question: "Can you redesign or rebuild an existing website?",
+      question: "Do you build terminal or command-line tools, not just apps with a UI?",
       answer:
-        "Yes. We regularly take over aging or slow sites, migrate the content, and rebuild on a modern, faster stack — usually without losing your existing search rankings if redirects and URL structure are handled correctly, which we account for during planning.",
+        "Yes. CLI tools are a common request from technical teams — for automation, CI pipelines, or internal scripts — and we build them to be scriptable, config-driven, and easy to distribute as a single binary.",
     },
     {
-      question: "Who owns the code after the project is done?",
+      question: "How do you scope a project when the problem is unusual or hard to describe?",
+      answer:
+        "That's exactly what the discovery phase is for. We sit down with whoever actually deals with the problem day-to-day, map out the real workflow and edge cases, and turn that into a concrete scope and timeline before any code is written.",
+    },
+    {
+      question: "Who owns the software once it's built?",
       answer:
         "You do. There's no proprietary lock-in — you receive full ownership of the codebase and can host it, extend it, or hand it to another team at any point.",
     },
     {
-      question: "Do you handle hosting and ongoing maintenance?",
+      question: "Can you take over or extend an existing internal tool or legacy system?",
       answer:
-        "We can set up and manage hosting for you, or hand off deployment credentials if you'd rather run it in-house. Every project includes a free post-launch hypercare window, after which ongoing maintenance and feature work are available on a retainer or as-needed basis.",
-    },
-    {
-      question: "Is my data secure in a clinic management system or financial tracker?",
-      answer:
-        "Security and access control are built in from the design phase, not bolted on afterward — role-based permissions, encrypted data handling, and secure authentication are standard on any system handling patient or financial data. If your project has specific compliance requirements (e.g. HIPAA-adjacent handling), we scope those requirements explicitly during discovery.",
+        "Yes. We regularly take over undocumented or aging internal tools, understand what they actually do, and either extend them safely or rebuild them on a more maintainable foundation without disrupting the team relying on them.",
     },
   ];
 
@@ -354,19 +354,19 @@ export default function WebServicesPage() {
     "@graph": [
       {
         "@type": "Service",
-        serviceType: "Web Design and Web Application Development",
+        serviceType: "Custom Software Development",
         provider: {
           "@type": "Organization",
           name: SITE_NAME,
           url: SITE_URL,
         },
         areaServed: "Worldwide",
-        url: `${SITE_URL}/services/web`,
+        url: `${SITE_URL}/services/custom`,
         description:
-          "Custom website design and web application development, including brochure websites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling.",
+          "Bespoke software development for internal business tooling and niche problems, including offline-first desktop apps, terminal and CLI tools, process automation, and systems integration.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Web Design & Development Services",
+          name: "Custom Software Development Services",
           itemListElement: offerings.map((o) => ({
             "@type": "Offer",
             itemOffered: {
@@ -402,27 +402,26 @@ export default function WebServicesPage() {
       <main>
         {/* 1. HERO */}
         <section
-          aria-labelledby="web-hero-heading"
+          aria-labelledby="custom-hero-heading"
           className="relative min-h-[70vh] pt-32 pb-20 flex items-center bg-gradient-to-br from-[#0b1120] via-[#0f172a] to-[#1e1b4b]"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.08),transparent_50%)]" />
 
           <div className="max-w-5xl mx-auto px-6 md:px-8 w-full relative z-10 text-center flex flex-col items-center">
             <span className="text-[var(--accent)] font-semibold uppercase tracking-[0.25em] text-xs bg-[var(--accent)]/10 px-4 py-1.5 rounded-full w-fit mb-6">
-              Website & Web Application Development
+              Custom Software Development
             </span>
             <h1
-              id="web-hero-heading"
+              id="custom-hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6"
             >
-              Websites and web applications built around how your business
-              actually runs.
+              Software built for the problems off-the-shelf tools can&apos;t
+              solve.
             </h1>
             <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mb-10">
-              From brochure sites and blogs that build your brand, to
-              full-stack applications — e-commerce, clinic management,
-              financial tracking, internal tooling — that run your
-              day-to-day operations.
+              Internal tooling, offline-first desktop apps, terminal and CLI
+              tools, automation, and anything else your business needs that
+              doesn&apos;t fit into a box.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -461,9 +460,9 @@ export default function WebServicesPage() {
                 What We Build
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Whether you need a simple online presence or a system that
-                runs core parts of your business, it&apos;s built custom around
-                your requirements — not squeezed into a template.
+                If it doesn&apos;t fit neatly into a website or mobile app, it
+                fits here — software shaped entirely around your process, not
+                the other way around.
               </p>
             </div>
 
@@ -489,9 +488,9 @@ export default function WebServicesPage() {
                 Our Tech Stack
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                A modern, fully custom-coded stack — no CMS, no page
-                builders, no proprietary platforms holding your project
-                hostage.
+                Custom software means the stack is chosen to fit the problem —
+                not the other way around. Here&apos;s the foundation we usually
+                build on.
               </p>
             </div>
 
@@ -526,16 +525,14 @@ export default function WebServicesPage() {
               </div>
               <div>
                 <h3 className="text-base font-bold text-white mb-2">
-                  Start Small, Scale When It&apos;s Proven
+                  Right-Sized From Day One
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed">
-                  We build on Supabase by default so you can launch and
-                  validate real ROI without committing to heavy
-                  infrastructure spend upfront. Once your system proves
-                  itself and needs to handle more scale, traffic, or custom
-                  backend logic, we migrate you onto a dedicated VPS or
-                  cloud setup — an infrastructure upgrade, not a rebuild
-                  from scratch.
+                  A single-user CLI tool doesn&apos;t need a cloud database, and
+                  a company-wide internal platform can&apos;t run on a script on
+                  someone&apos;s laptop. We match the architecture to the actual
+                  scale of the problem, then build in room to grow if the
+                  tool&apos;s usage expands beyond its original scope.
                 </p>
               </div>
             </div>
@@ -556,8 +553,8 @@ export default function WebServicesPage() {
                 Why Businesses Choose Custom Over Off-the-Shelf
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Templates and page builders are fine until your business
-                outgrows what they can do. Here&apos;s what custom development
+                Generic tools are fine until your problem is the one they
+                weren&apos;t built for. Here&apos;s what purpose-built software
                 gets you instead.
               </p>
             </div>
@@ -597,7 +594,7 @@ export default function WebServicesPage() {
                 id="process-heading"
                 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4"
               >
-                How a Web Project Runs With Us
+                How a Custom Project Runs With Us
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
                 A transparent, six-stage process from first conversation to
@@ -651,8 +648,8 @@ export default function WebServicesPage() {
                 Frequently Asked Questions
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Common questions from clients scoping a website or web
-                application project.
+                Common questions from clients scoping a custom software
+                project.
               </p>
             </div>
 
@@ -662,20 +659,20 @@ export default function WebServicesPage() {
 
         {/* 6. CLOSING CTA */}
         <section
-          aria-labelledby="web-cta-heading"
+          aria-labelledby="custom-cta-heading"
           className="py-20 relative bg-gradient-to-t from-[#090d1a] via-[#0b1120] to-[#0f172a] border-t border-white/5"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,rgba(99,102,241,0.06),transparent_45%)]" />
 
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center space-y-6">
             <h2
-              id="web-cta-heading"
+              id="custom-cta-heading"
               className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
             >
-              Have a brochure site, blog, or business application in mind?
+              Have a problem no off-the-shelf tool solves?
             </h2>
             <p className="text-white/60 max-w-xl text-sm sm:text-base leading-relaxed">
-              Tell us what you&apos;re trying to build and we&apos;ll map out an
+              Tell us what you&apos;re dealing with and we&apos;ll map out an
               honest scope, timeline, and quote — free of cost.
             </p>
             <div className="pt-4">

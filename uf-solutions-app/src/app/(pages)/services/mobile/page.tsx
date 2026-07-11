@@ -4,12 +4,12 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  Globe,
-  Newspaper,
-  ShoppingCart,
+  Smartphone,
+  ShoppingBag,
   HeartPulse,
   Wallet,
-  LayoutDashboard,
+  Truck,
+  LayoutGrid,
   Search,
   PenTool,
   Code,
@@ -18,21 +18,22 @@ import {
   Wrench,
   ShieldCheck,
   Zap,
-  Gauge,
   Layers,
-  Atom,
+  Gauge,
+  Apple,
+  Bot,
   Server,
   Database,
   TrendingUp,
 } from "lucide-react";
 
 /**
- * SEO NOTES (same conventions as the homepage / about page)
+ * SEO NOTES (same conventions as the homepage / about page / /services/web page)
  * -----------------------------------------------------------
  * - No "use client": this is a static informational page, so it stays a
  *   Server Component and can export `metadata` + render JSON-LD directly.
- * - Unique `metadata` for this exact URL (/services/web) — never copy the
- *   homepage's title/description onto a service page.
+ * - Unique `metadata` for this exact URL (/services/mobile) — never copy the
+ *   homepage's or another service page's title/description.
  * - Two JSON-LD blocks: a `Service` graph describing the sub-services you
  *   offer (helps Google understand what's actually for sale here), and a
  *   `FAQPage` graph built from the same questions rendered on the page
@@ -44,47 +45,48 @@ import {
 
 const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
 const SITE_NAME = "Your Company Name"; // TODO: replace with your real business name
-const OG_IMAGE = `${SITE_URL}/og-services-web.jpg`; // TODO: add a real 1200x630 social preview image
+const OG_IMAGE = `${SITE_URL}/og-services-mobile.jpg`; // TODO: add a real 1200x630 social preview image
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `Website Design & Web Application Development | ${SITE_NAME}`,
+  title: `Mobile App Development (iOS & Android, Flutter) | ${SITE_NAME}`,
   description:
-    "Custom website design and web application development: brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling — built to fit your operations, not a template.",
+    "Custom cross-platform mobile app development with Flutter: e-commerce apps, clinic and healthcare apps, fintech and finance trackers, on-demand and delivery apps, and internal business tooling — one codebase, native performance on iOS and Android.",
   keywords: [
-    "website design services",
-    "web application development",
-    "custom e-commerce development",
-    "clinic management system development",
-    "financial tracker web app",
-    "internal tooling development",
-    "business website development",
+    "mobile app development services",
+    "cross-platform app development",
+    "flutter app development",
+    "ios and android app development",
+    "custom e-commerce mobile app",
+    "clinic management mobile app",
+    "on-demand delivery app development",
+    "internal business mobile app",
   ],
   alternates: {
-    canonical: "/services/web",
+    canonical: "/services/mobile",
   },
   openGraph: {
     type: "website",
-    url: `${SITE_URL}/services/web`,
+    url: `${SITE_URL}/services/mobile`,
     siteName: SITE_NAME,
-    title: `Website Design & Web Application Development | ${SITE_NAME}`,
+    title: `Mobile App Development (iOS & Android, Flutter) | ${SITE_NAME}`,
     description:
-      "From brochure sites and blogs to e-commerce, clinic management systems, financial trackers, and internal tooling — custom-built web solutions for your business.",
+      "From e-commerce and healthcare apps to fintech, on-demand, and internal tooling — custom cross-platform mobile apps built with Flutter for iOS and Android from a single codebase.",
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `Web design and development services at ${SITE_NAME}`,
+        alt: `Mobile app development services at ${SITE_NAME}`,
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `Website Design & Web Application Development | ${SITE_NAME}`,
+    title: `Mobile App Development (iOS & Android, Flutter) | ${SITE_NAME}`,
     description:
-      "Custom brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal tooling — built around your business.",
+      "Custom cross-platform mobile apps — e-commerce, healthcare, fintech, on-demand, and internal tooling — built with Flutter for iOS and Android.",
     images: [OG_IMAGE],
   },
   robots: {
@@ -172,71 +174,71 @@ function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
 /* Page                                                                   */
 /* -------------------------------------------------------------------- */
 
-export default function WebServicesPage() {
+export default function MobileServicesPage() {
   const offerings: OfferingCardProps[] = [
     {
-      title: "Brochure & Marketing Websites",
-      desc: "Fast, on-brand sites that clearly explain who you are and turn visitors into inquiries.",
-      icon: Globe,
+      title: "Cross-Platform Mobile Apps",
+      desc: "One Flutter codebase, shipped natively to both iOS and Android — without the cost of building two separate apps.",
+      icon: Smartphone,
       bullets: [
-        "Custom design, not a recycled template",
-        "Mobile-first, fast-loading pages",
-        "Built-in on-page SEO foundations",
-        "No CMS or page-builder lock-in — clean code you fully own",
+        "Single codebase for iOS and Android",
+        "Native look, feel, and performance",
+        "Faster time-to-market than two native builds",
+        "You own the codebase outright — no platform lock-in",
       ],
     },
     {
-      title: "Blogs & Content Platforms",
-      desc: "A fast, SEO-friendly publishing setup — built with code and a managed database, not a bloated CMS.",
-      icon: Newspaper,
-      bullets: [
-        "Built on Next.js for speed and search visibility",
-        "Content stored in Supabase — no CMS plugins or lock-in",
-        "SEO-friendly URLs, metadata, and sitemaps",
-        "Categories, tags, and related-post logic",
-      ],
-    },
-    {
-      title: "E-Commerce Applications",
-      desc: "Storefronts built around your actual catalog, pricing rules, and checkout flow.",
-      icon: ShoppingCart,
+      title: "E-Commerce & Retail Apps",
+      desc: "Mobile storefronts built around your catalog, promotions, and checkout — not a generic template.",
+      icon: ShoppingBag,
       bullets: [
         "Custom product, variant, and inventory logic",
-        "Secure payment and order processing",
+        "Secure in-app payments and order tracking",
+        "Push notifications for offers and order updates",
         "Admin dashboard for orders and stock",
-        "Built to handle traffic spikes at launch or sale time",
       ],
     },
     {
-      title: "Clinic & Healthcare Management Systems",
-      desc: "Scheduling, patient records, and checkout flows tailored to how your clinic actually runs.",
+      title: "Clinic & Healthcare Apps",
+      desc: "Patient-facing and staff-facing apps for booking, records, and care coordination on the go.",
       icon: HeartPulse,
       bullets: [
-        "Appointment scheduling and reminders",
-        "Patient records and visit history",
-        "Role-based access for staff vs. providers",
+        "Appointment booking and reminders",
+        "Patient records and visit history on mobile",
+        "Role-based access for staff vs. patients",
         "Built with data privacy in mind from day one",
       ],
     },
     {
-      title: "Financial Trackers & Dashboards",
-      desc: "Custom tools for tracking revenue, expenses, or portfolio data in real time.",
+      title: "Fintech & Financial Tracker Apps",
+      desc: "Custom apps for tracking spend, revenue, or portfolios with real-time data in your pocket.",
       icon: Wallet,
       bullets: [
-        "Live dashboards and custom reports",
+        "Real-time dashboards and reports",
+        "Biometric login and secure data handling",
         "Integrations with your existing data sources",
-        "Role-based permissions for sensitive data",
         "Export to CSV/PDF for accounting and audits",
       ],
     },
     {
-      title: "Internal Tooling & Admin Panels",
-      desc: "Purpose-built software for the operational workflows generic tools can't handle.",
-      icon: LayoutDashboard,
+      title: "On-Demand & Delivery Apps",
+      desc: "Marketplace-style apps connecting customers, drivers or providers, and your back office.",
+      icon: Truck,
+      bullets: [
+        "Live order and location tracking",
+        "Separate customer, provider, and admin apps",
+        "In-app messaging and status updates",
+        "Built to handle demand spikes at peak hours",
+      ],
+    },
+    {
+      title: "Internal Business & Field Apps",
+      desc: "Purpose-built mobile tools for field teams and operations that off-the-shelf apps can't handle.",
+      icon: LayoutGrid,
       bullets: [
         "Custom workflows mapped to your team's process",
+        "Offline support for low-connectivity environments",
         "Automates manual, repetitive data entry",
-        "Scales as headcount and complexity grow",
         "Built to be maintained by your team long-term",
       ],
     },
@@ -244,32 +246,32 @@ export default function WebServicesPage() {
 
   const techStack = [
     {
-      icon: Atom,
-      title: "Frontend — Next.js & React",
-      desc: "The same framework and library trusted by the world's largest platforms, tuned for fast load times and strong SEO out of the box.",
+      icon: Bot,
+      title: "Frontend — Flutter & Dart",
+      desc: "A single, high-performance codebase compiled natively for both iOS and Android — no compromise on speed or feel.",
     },
     {
       icon: Server,
       title: "Backend — NestJS + Fastify (TypeScript)",
-      desc: "A structured, fully type-safe API layer that stays maintainable as your application's logic grows in complexity.",
+      desc: "A structured, fully type-safe API layer that stays maintainable as your app's logic and user base grow.",
     },
     {
       icon: Database,
       title: "Database — Supabase",
-      desc: "A managed Postgres database that gets your system to production without upfront infrastructure spend or a dedicated DevOps hire.",
+      desc: "A managed Postgres database that gets your app to launch without upfront infrastructure spend or a dedicated DevOps hire.",
     },
   ];
 
   const whyCustom = [
     {
-      icon: Gauge,
-      title: "Built for Speed",
-      desc: "Optimized for Core Web Vitals — fast load times that keep visitors around and support your search rankings.",
+      icon: Apple,
+      title: "Truly Cross-Platform",
+      desc: "One build, one team, one codebase — shipped to both the App Store and Google Play without duplicating work.",
     },
     {
       icon: ShieldCheck,
       title: "Secure by Default",
-      desc: "Modern authentication, data handling, and hosting practices baked in from the first commit.",
+      desc: "Modern authentication, data handling, and API security baked in from the first commit.",
     },
     {
       icon: Layers,
@@ -277,9 +279,9 @@ export default function WebServicesPage() {
       desc: "Clean, modular architecture that can grow from an MVP into a full platform without a rebuild.",
     },
     {
-      icon: Zap,
-      title: "No Template Lock-In",
-      desc: "You own the codebase outright — no proprietary page builder holding your site hostage.",
+      icon: Gauge,
+      title: "Built for Speed",
+      desc: "Smooth 60fps interactions and fast startup times, tuned to feel native on every device.",
     },
   ];
 
@@ -287,7 +289,7 @@ export default function WebServicesPage() {
     {
       icon: Search,
       title: "Discovery",
-      desc: "We map your goals, users, and any existing systems the new site or app needs to work with.",
+      desc: "We map your goals, users, and any existing systems the app needs to work with.",
     },
     {
       icon: PenTool,
@@ -297,17 +299,17 @@ export default function WebServicesPage() {
     {
       icon: Code,
       title: "Development",
-      desc: "Clean, tested code built against the agreed scope, with visible progress throughout.",
+      desc: "Clean, tested Flutter code built against the agreed scope, with visible progress throughout.",
     },
     {
       icon: TestTube2,
       title: "QA & Testing",
-      desc: "Cross-browser, cross-device testing plus performance and accessibility checks before launch.",
+      desc: "Real-device testing across iOS and Android, plus performance and accessibility checks before launch.",
     },
     {
       icon: Rocket,
       title: "Launch",
-      desc: "Staged deployment, DNS/hosting setup, and a smoke-tested go-live with minimal downtime.",
+      desc: "App Store and Google Play submission, staged rollout, and a smoke-tested go-live with minimal downtime.",
     },
     {
       icon: Wrench,
@@ -318,34 +320,39 @@ export default function WebServicesPage() {
 
   const faqs: FaqItem[] = [
     {
-      question: "How long does it take to build a website or web application?",
+      question: "Why build with Flutter instead of separate native apps?",
       answer:
-        "A brochure or blog site typically takes 2–4 weeks from kickoff to launch. Custom web applications — e-commerce, clinic management systems, financial trackers, or internal tools — usually run 6–12 weeks depending on scope, integrations, and how much custom logic is involved. You'll get a firm timeline after the discovery phase.",
+        "Flutter lets us build one codebase that compiles to genuinely native performance on both iOS and Android. That typically means a faster build, a lower cost than maintaining two separate native apps, and a single team that can ship updates to both platforms at once — without sacrificing the native feel your users expect.",
     },
     {
-      question: "Do you build on a page builder or platform like WordPress or Shopify?",
+      question: "How long does it take to build a mobile app?",
       answer:
-        "It depends on the project. Simple brochure sites can sometimes be well served by a managed platform, and we'll say so if that's the better fit for your budget. For anything with custom business logic — e-commerce with non-standard rules, clinic scheduling, financial dashboards, internal tools — we build custom so the software matches your process instead of forcing your process to match the software.",
+        "A focused, single-purpose app typically takes 6–10 weeks from kickoff to app store submission. Larger apps — marketplaces, clinic systems, fintech dashboards — usually run 10–16 weeks depending on scope, integrations, and how much custom logic is involved. You'll get a firm timeline after the discovery phase.",
     },
     {
-      question: "Can you redesign or rebuild an existing website?",
+      question: "Will the app work on both iPhone and Android devices?",
       answer:
-        "Yes. We regularly take over aging or slow sites, migrate the content, and rebuild on a modern, faster stack — usually without losing your existing search rankings if redirects and URL structure are handled correctly, which we account for during planning.",
+        "Yes. Building with Flutter means a single codebase ships to both the App Store and Google Play, with a native look and feel tuned for each platform's design conventions.",
     },
     {
-      question: "Who owns the code after the project is done?",
+      question: "Do you handle App Store and Google Play submission?",
       answer:
-        "You do. There's no proprietary lock-in — you receive full ownership of the codebase and can host it, extend it, or hand it to another team at any point.",
+        "Yes. We handle store listing setup, submission, and review requirements for both platforms as part of the launch phase, and can manage your developer accounts or work within existing ones.",
     },
     {
-      question: "Do you handle hosting and ongoing maintenance?",
+      question: "Who owns the code and the app store listing after the project is done?",
       answer:
-        "We can set up and manage hosting for you, or hand off deployment credentials if you'd rather run it in-house. Every project includes a free post-launch hypercare window, after which ongoing maintenance and feature work are available on a retainer or as-needed basis.",
+        "You do. There's no proprietary lock-in — you receive full ownership of the codebase and app store listings, and can host, extend, or hand the project to another team at any point.",
     },
     {
-      question: "Is my data secure in a clinic management system or financial tracker?",
+      question: "Is my data secure in a healthcare or fintech mobile app?",
       answer:
-        "Security and access control are built in from the design phase, not bolted on afterward — role-based permissions, encrypted data handling, and secure authentication are standard on any system handling patient or financial data. If your project has specific compliance requirements (e.g. HIPAA-adjacent handling), we scope those requirements explicitly during discovery.",
+        "Security and access control are built in from the design phase, not bolted on afterward — role-based permissions, encrypted data handling, and secure authentication are standard on any app handling patient or financial data. If your project has specific compliance requirements, we scope those explicitly during discovery.",
+    },
+    {
+      question: "Can you add features to or take over an existing mobile app?",
+      answer:
+        "Yes. We regularly take over existing Flutter apps, or rebuild apps originally built natively or on another framework, migrating data and functionality onto a modern, maintainable codebase.",
     },
   ];
 
@@ -354,19 +361,19 @@ export default function WebServicesPage() {
     "@graph": [
       {
         "@type": "Service",
-        serviceType: "Web Design and Web Application Development",
+        serviceType: "Cross-Platform Mobile App Development",
         provider: {
           "@type": "Organization",
           name: SITE_NAME,
           url: SITE_URL,
         },
         areaServed: "Worldwide",
-        url: `${SITE_URL}/services/web`,
+        url: `${SITE_URL}/services/mobile`,
         description:
-          "Custom website design and web application development, including brochure websites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling.",
+          "Custom cross-platform mobile app development with Flutter, including e-commerce apps, clinic and healthcare apps, fintech trackers, on-demand and delivery apps, and internal business tooling.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Web Design & Development Services",
+          name: "Mobile App Development Services",
           itemListElement: offerings.map((o) => ({
             "@type": "Offer",
             itemOffered: {
@@ -402,27 +409,26 @@ export default function WebServicesPage() {
       <main>
         {/* 1. HERO */}
         <section
-          aria-labelledby="web-hero-heading"
+          aria-labelledby="mobile-hero-heading"
           className="relative min-h-[70vh] pt-32 pb-20 flex items-center bg-gradient-to-br from-[#0b1120] via-[#0f172a] to-[#1e1b4b]"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.08),transparent_50%)]" />
 
           <div className="max-w-5xl mx-auto px-6 md:px-8 w-full relative z-10 text-center flex flex-col items-center">
             <span className="text-[var(--accent)] font-semibold uppercase tracking-[0.25em] text-xs bg-[var(--accent)]/10 px-4 py-1.5 rounded-full w-fit mb-6">
-              Website & Web Application Development
+              Mobile App Development
             </span>
             <h1
-              id="web-hero-heading"
+              id="mobile-hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6"
             >
-              Websites and web applications built around how your business
+              Cross-platform mobile apps built around how your business
               actually runs.
             </h1>
             <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mb-10">
-              From brochure sites and blogs that build your brand, to
-              full-stack applications — e-commerce, clinic management,
-              financial tracking, internal tooling — that run your
-              day-to-day operations.
+              One Flutter codebase, native performance on iOS and Android —
+              for e-commerce, healthcare, fintech, on-demand, and internal
+              business apps of any size.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -461,9 +467,10 @@ export default function WebServicesPage() {
                 What We Build
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Whether you need a simple online presence or a system that
-                runs core parts of your business, it&apos;s built custom around
-                your requirements — not squeezed into a template.
+                Whether you need a focused customer-facing app or a full
+                platform running core parts of your business, it&apos;s built
+                custom around your requirements — not squeezed into a
+                template.
               </p>
             </div>
 
@@ -489,9 +496,8 @@ export default function WebServicesPage() {
                 Our Tech Stack
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                A modern, fully custom-coded stack — no CMS, no page
-                builders, no proprietary platforms holding your project
-                hostage.
+                A modern, fully custom-coded stack built on Flutter — one
+                codebase, native performance, no per-platform rebuild.
               </p>
             </div>
 
@@ -531,11 +537,10 @@ export default function WebServicesPage() {
                 <p className="text-sm text-white/60 leading-relaxed">
                   We build on Supabase by default so you can launch and
                   validate real ROI without committing to heavy
-                  infrastructure spend upfront. Once your system proves
-                  itself and needs to handle more scale, traffic, or custom
-                  backend logic, we migrate you onto a dedicated VPS or
-                  cloud setup — an infrastructure upgrade, not a rebuild
-                  from scratch.
+                  infrastructure spend upfront. Once your app proves itself
+                  and needs to handle more scale, traffic, or custom backend
+                  logic, we migrate you onto a dedicated VPS or cloud setup —
+                  an infrastructure upgrade, not a rebuild from scratch.
                 </p>
               </div>
             </div>
@@ -556,8 +561,8 @@ export default function WebServicesPage() {
                 Why Businesses Choose Custom Over Off-the-Shelf
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Templates and page builders are fine until your business
-                outgrows what they can do. Here&apos;s what custom development
+                No-code app builders are fine until your business outgrows
+                what they can do. Here&apos;s what custom Flutter development
                 gets you instead.
               </p>
             </div>
@@ -597,7 +602,7 @@ export default function WebServicesPage() {
                 id="process-heading"
                 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4"
               >
-                How a Web Project Runs With Us
+                How a Mobile Project Runs With Us
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
                 A transparent, six-stage process from first conversation to
@@ -651,8 +656,7 @@ export default function WebServicesPage() {
                 Frequently Asked Questions
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                Common questions from clients scoping a website or web
-                application project.
+                Common questions from clients scoping a mobile app project.
               </p>
             </div>
 
@@ -662,17 +666,17 @@ export default function WebServicesPage() {
 
         {/* 6. CLOSING CTA */}
         <section
-          aria-labelledby="web-cta-heading"
+          aria-labelledby="mobile-cta-heading"
           className="py-20 relative bg-gradient-to-t from-[#090d1a] via-[#0b1120] to-[#0f172a] border-t border-white/5"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,rgba(99,102,241,0.06),transparent_45%)]" />
 
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center space-y-6">
             <h2
-              id="web-cta-heading"
+              id="mobile-cta-heading"
               className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
             >
-              Have a brochure site, blog, or business application in mind?
+              Have a mobile app idea for your business in mind?
             </h2>
             <p className="text-white/60 max-w-xl text-sm sm:text-base leading-relaxed">
               Tell us what you&apos;re trying to build and we&apos;ll map out an
