@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Monitor, 
   Smartphone, 
@@ -10,7 +11,9 @@ import {
   RefreshCw, 
   CheckCircle2, 
   ChevronDown, 
-  ArrowRight 
+  ArrowRight,
+  Newspaper,
+  BarChart3
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -48,6 +51,24 @@ const NAV_ITEMS = [
   { label: "About", href: "/about" },
   { label: "Testimonials", href: "/testimonials" },
   {
+    label: "Resources",
+    href: "#",
+    children: [
+      {
+        label: "Blog",
+        desc: "Insights, updates, and engineering notes",
+        icon: Newspaper,
+        href: "/blog",
+      },
+      {
+        label: "Case Studies",
+        desc: "Real projects, real results",
+        icon: BarChart3,
+        href: "/case-studies",
+      },
+    ],
+  },
+  {
     label: "Projects",
     href: "#",
     children: [
@@ -65,6 +86,7 @@ const NAV_ITEMS = [
       },
     ],
   },
+  { label: "Contact", href: "/contact" },
 ];
 
 function DropdownMenu({ items, title, isOpen }) {
@@ -107,7 +129,7 @@ function DropdownMenu({ items, title, isOpen }) {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group/item flex gap-4 rounded-2xl p-4 hover:bg-white/6 hover:translate-x-[2px] transition"
+                className="group/item flex gap-4 rounded-2xl p-5 hover:bg-white/6 hover:translate-x-[2px] transition"
               >
                 <div className="w-11 h-11 shrink-0 rounded-xl bg-white/8 flex items-center justify-center text-white/80 group-hover/item:text-white transition-colors">
                   <IconComponent size={20} strokeWidth={2} />
@@ -260,14 +282,17 @@ export default function Navbar() {
     >
       <nav
         ref={navRef}
-        className="max-w-7xl mx-auto h-[72px] px-6 md:px-8 flex items-center"
+        className="max-w-7xl mx-auto h-[80px] px-8 md:px-12 flex items-center"
       >
-        <Link href="/" className="shrink-0">
-          <div className="flex items-baseline">
-            <span className="text-white font-bold text-lg">UF</span>
-            <span className="text-[var(--accent)] font-bold text-lg">.</span>
-            <span className="text-white/80 ml-1">Software</span>
-          </div>
+        <Link href="/" className="shrink-0 flex items-center" aria-label="UF Software home">
+          <Image
+            src="/uf-logo.png"
+            alt="UF Software Logo"
+            width={794}
+            height={558}
+            priority
+            className="h-9 md:h-10 w-auto"
+          />
         </Link>
 
         <ul className="hidden lg:flex flex-1 justify-center h-full">
@@ -286,7 +311,7 @@ export default function Navbar() {
                     }
                     aria-expanded={openDesktopMenu === item.label}
                     aria-haspopup="true"
-                    className="px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 flex gap-2 items-center"
+                    className="px-5 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/10 flex gap-2 items-center"
                   >
                     {item.label}
                     <ChevronDown 
@@ -304,7 +329,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   href={item.href}
-                  className="px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10"
+                  className="px-5 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/10"
                 >
                   {item.label}
                 </Link>
@@ -315,7 +340,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="hidden lg:block px-5 py-2.5 rounded-xl bg-[var(--accent)] text-white font-semibold"
+          className="hidden lg:block px-6 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold"
         >
           Get a Free Quote
         </Link>
@@ -361,7 +386,7 @@ export default function Navbar() {
           }
         `}
       >
-        <div className="px-6 py-2">
+        <div className="px-8 py-3">
           {NAV_ITEMS.map((item) =>
             item.children ? (
               <MobileAccordion
@@ -380,7 +405,7 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={closeMobileMenu}
-                className="block py-4 border-b border-white/10 text-white/80 font-medium"
+                className="block py-5 border-b border-white/10 text-white/80 font-medium"
               >
                 {item.label}
               </Link>
@@ -390,7 +415,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={closeMobileMenu}
-            className="block mt-6 mb-6 px-5 py-3 rounded-xl bg-[var(--accent)] text-white font-semibold text-center"
+            className="block mt-6 mb-6 px-6 py-4 rounded-xl bg-[var(--accent)] text-white font-semibold text-center"
           >
             Get a Free Quote
           </Link>

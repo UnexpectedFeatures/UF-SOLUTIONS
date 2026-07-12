@@ -5,12 +5,13 @@ import {
   ArrowRight,
   CheckCircle2,
   Globe,
-  Newspaper,
   ShoppingCart,
-  HeartPulse,
-  Wallet,
+  Newspaper,
   LayoutDashboard,
+  Building2,
+  GraduationCap,
   Search,
+  MessageCircle,
   PenTool,
   Code,
   TestTube2,
@@ -40,6 +41,15 @@ import {
  * - FAQ uses native <details>/<summary> — fully indexable content, zero
  *   client JS, and free keyboard/screen-reader support.
  * - One <h1>, one <h2> per section, <h3> for cards within a section.
+ * - LINK TEXT: every link/button on this page uses descriptive, unique
+ *   anchor text ("Get a Free Quote", "Talk to Us About Your Project", etc.)
+ *   instead of generic text like "Read More" or "Click Here" — this is what
+ *   search engines and screen readers use to understand where a link goes.
+ *   NOTE: if an SEO audit is flagging "Read More" links pointing AT this
+ *   page's URL (/services/web), those links live on whichever page links
+ *   here (e.g. the homepage's services grid) — update the anchor text over
+ *   there to something like "Explore web development services" rather than
+ *   "Read More".
  */
 
 const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
@@ -50,15 +60,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `Website Design & Web Application Development | ${SITE_NAME}`,
   description:
-    "Custom website design and web application development: brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling — built to fit your operations, not a template.",
+    "Custom websites and web applications: brochure sites, e-commerce, booking platforms, CMS and blogs, SPAs and PWAs, CRM and ERP systems, learning platforms, and more — built to fit your operations, not a template.",
   keywords: [
     "website design services",
     "web application development",
     "custom e-commerce development",
-    "clinic management system development",
-    "financial tracker web app",
-    "internal tooling development",
-    "business website development",
+    "booking and scheduling platform development",
+    "content management system development",
+    "single page application development",
+    "progressive web app development",
+    "crm and erp development",
+    "learning management system development",
   ],
   alternates: {
     canonical: "/services/web",
@@ -69,7 +81,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `Website Design & Web Application Development | ${SITE_NAME}`,
     description:
-      "From brochure sites and blogs to e-commerce, clinic management systems, financial trackers, and internal tooling — custom-built web solutions for your business.",
+      "From brochure sites and blogs to e-commerce, booking platforms, CRM/ERP systems, and learning platforms — custom-built web solutions for your business.",
     images: [
       {
         url: OG_IMAGE,
@@ -84,7 +96,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Website Design & Web Application Development | ${SITE_NAME}`,
     description:
-      "Custom brochure sites, blogs, e-commerce, clinic management systems, financial trackers, and internal tooling — built around your business.",
+      "Custom brochure sites, e-commerce, booking platforms, CMS, SPAs/PWAs, CRM/ERP systems, and learning platforms — built around your business.",
     images: [OG_IMAGE],
   },
   robots: {
@@ -142,6 +154,19 @@ interface FaqItem {
   answer: string;
 }
 
+interface TechItem {
+  name: string;
+  primary?: boolean;
+  note?: string;
+}
+
+interface TechCategory {
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+  title: string;
+  desc: string;
+  items: TechItem[];
+}
+
 function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
   return (
     <div className="space-y-3">
@@ -175,88 +200,122 @@ function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
 export default function WebServicesPage() {
   const offerings: OfferingCardProps[] = [
     {
-      title: "Brochure & Marketing Websites",
-      desc: "Fast, on-brand sites that clearly explain who you are and turn visitors into inquiries.",
+      title: "Business & Corporate",
+      desc: "Public-facing sites that establish credibility and turn visitors into leads.",
       icon: Globe,
       bullets: [
-        "Custom design, not a recycled template",
-        "Mobile-first, fast-loading pages",
-        "Built-in on-page SEO foundations",
-        "No CMS or page-builder lock-in — clean code you fully own",
+        "Brochure websites",
+        "Portfolio websites",
+        "Landing pages",
+        "Directory portals",
       ],
     },
     {
-      title: "Blogs & Content Platforms",
-      desc: "A fast, SEO-friendly publishing setup — built with code and a managed database, not a bloated CMS.",
-      icon: Newspaper,
-      bullets: [
-        "Built on Next.js for speed and search visibility",
-        "Content stored in Supabase — no CMS plugins or lock-in",
-        "SEO-friendly URLs, metadata, and sitemaps",
-        "Categories, tags, and related-post logic",
-      ],
-    },
-    {
-      title: "E-Commerce Applications",
-      desc: "Storefronts built around your actual catalog, pricing rules, and checkout flow.",
+      title: "Commerce & Transactions",
+      desc: "Systems built to handle real transactions, bookings, and multi-vendor logic — not just a basic checkout.",
       icon: ShoppingCart,
       bullets: [
-        "Custom product, variant, and inventory logic",
-        "Secure payment and order processing",
-        "Admin dashboard for orders and stock",
-        "Built to handle traffic spikes at launch or sale time",
+        "E-commerce platforms",
+        "Booking and scheduling services",
+        "Marketplace platforms",
       ],
     },
     {
-      title: "Clinic & Healthcare Management Systems",
-      desc: "Scheduling, patient records, and checkout flows tailored to how your clinic actually runs.",
-      icon: HeartPulse,
+      title: "Content & Media",
+      desc: "Publishing systems built for search visibility and easy day-to-day content updates.",
+      icon: Newspaper,
       bullets: [
-        "Appointment scheduling and reminders",
-        "Patient records and visit history",
-        "Role-based access for staff vs. providers",
-        "Built with data privacy in mind from day one",
+        "Blogs",
+        "News and media sites",
+        "Content management systems (CMS)",
+        "Wikis",
       ],
     },
     {
-      title: "Financial Trackers & Dashboards",
-      desc: "Custom tools for tracking revenue, expenses, or portfolio data in real time.",
-      icon: Wallet,
-      bullets: [
-        "Live dashboards and custom reports",
-        "Integrations with your existing data sources",
-        "Role-based permissions for sensitive data",
-        "Export to CSV/PDF for accounting and audits",
-      ],
-    },
-    {
-      title: "Internal Tooling & Admin Panels",
-      desc: "Purpose-built software for the operational workflows generic tools can't handle.",
+      title: "Advanced & Interactive Apps",
+      desc: "Full applications that run real logic in the browser, not just static pages.",
       icon: LayoutDashboard,
       bullets: [
-        "Custom workflows mapped to your team's process",
-        "Automates manual, repetitive data entry",
-        "Scales as headcount and complexity grow",
-        "Built to be maintained by your team long-term",
+        "Web applications",
+        "Single-page applications (SPAs)",
+        "Multi-page applications (MPAs)",
+        "Progressive web apps (PWAs)",
+        "Portal websites",
+        "Animated websites",
       ],
+    },
+    {
+      title: "Enterprise & Internal Tools",
+      desc: "Software that runs the operational backbone of your business day to day.",
+      icon: Building2,
+      bullets: [
+        "Customer relationship management (CRM)",
+        "Enterprise resource planning (ERP)",
+        "Intranet portals",
+      ],
+    },
+    {
+      title: "Community & Education",
+      desc: "Platforms built around people learning, discussing, and connecting with each other.",
+      icon: GraduationCap,
+      bullets: [
+        "Learning management systems (LMS)",
+        "Social media networks",
+        "Forum websites",
+      ],
+    },
+    {
+      title: "Search & Utilities",
+      desc: "Focused tools that do one job well, quickly, and reliably.",
+      icon: Search,
+      bullets: ["Search engines", "Web-based tools (e.g., calculators, converters)"],
     },
   ];
 
-  const techStack = [
+  const techStack: TechCategory[] = [
     {
       icon: Atom,
-      title: "Frontend — Next.js & React",
-      desc: "The same framework and library trusted by the world's largest platforms, tuned for fast load times and strong SEO out of the box.",
+      title: "Frontend",
+      desc: "React-based frontends tuned for fast load times and strong SEO out of the box.",
+      items: [
+        { name: "Next.js", primary: true },
+        { name: "React" },
+      ],
     },
     {
       icon: Server,
-      title: "Backend — NestJS + Fastify (TypeScript)",
-      desc: "A structured, fully type-safe API layer that stays maintainable as your application's logic grows in complexity.",
+      title: "Server-Side",
+      desc: "Structured, type-safe APIs that stay maintainable as your application's logic grows.",
+      items: [
+        { name: "NestJS (Fastify adapter)", primary: true },
+        { name: "Laravel" },
+        { name: "Express / Fastify" },
+      ],
     },
     {
       icon: Database,
-      title: "Database — Supabase",
-      desc: "A managed Postgres database that gets your system to production without upfront infrastructure spend or a dedicated DevOps hire.",
+      title: "Database",
+      desc: "Reliable, well-structured data storage matched to what the project actually needs.",
+      items: [
+        { name: "PostgreSQL", primary: true },
+        { name: "Firestore / Firebase", note: "for specific needs" },
+      ],
+    },
+    {
+      icon: Layers,
+      title: "Platforms",
+      desc: "Managed services that speed up delivery without locking you into a black box.",
+      items: [
+        { name: "Strapi", note: "headless CMS" },
+        { name: "Supabase" },
+        { name: "Firebase" },
+      ],
+    },
+    {
+      icon: PenTool,
+      title: "Design & Prototyping",
+      desc: "Every interface is designed and signed off on before a line of code is written.",
+      items: [{ name: "Figma", note: "prototyping & design proposals" }],
     },
   ];
 
@@ -320,12 +379,12 @@ export default function WebServicesPage() {
     {
       question: "How long does it take to build a website or web application?",
       answer:
-        "A brochure or blog site typically takes 2–4 weeks from kickoff to launch. Custom web applications — e-commerce, clinic management systems, financial trackers, or internal tools — usually run 6–12 weeks depending on scope, integrations, and how much custom logic is involved. You'll get a firm timeline after the discovery phase.",
+        "A brochure or blog site typically takes 2–4 weeks from kickoff to launch. Custom web applications — e-commerce, booking platforms, CRM/ERP systems, or learning platforms — usually run 6–12 weeks depending on scope, integrations, and how much custom logic is involved. You'll get a firm timeline after the discovery phase.",
     },
     {
-      question: "Do you build on a page builder or platform like WordPress or Shopify?",
+      question: "Do you build on WordPress or another page builder?",
       answer:
-        "It depends on the project. Simple brochure sites can sometimes be well served by a managed platform, and we'll say so if that's the better fit for your budget. For anything with custom business logic — e-commerce with non-standard rules, clinic scheduling, financial dashboards, internal tools — we build custom so the software matches your process instead of forcing your process to match the software.",
+        "No — we don't use WordPress, Squarespace, or similar page builders. Every project is hand-coded on our own stack (Next.js and React on the frontend; NestJS, Laravel, or Express/Fastify on the backend), so you get a codebase you fully own, without plugin bloat, licensing fees, or a page builder holding your site hostage.",
     },
     {
       question: "Can you redesign or rebuild an existing website?",
@@ -343,9 +402,9 @@ export default function WebServicesPage() {
         "We can set up and manage hosting for you, or hand off deployment credentials if you'd rather run it in-house. Every project includes a free post-launch hypercare window, after which ongoing maintenance and feature work are available on a retainer or as-needed basis.",
     },
     {
-      question: "Is my data secure in a clinic management system or financial tracker?",
+      question: "What if my project doesn't fit neatly into one of your categories?",
       answer:
-        "Security and access control are built in from the design phase, not bolted on afterward — role-based permissions, encrypted data handling, and secure authentication are standard on any system handling patient or financial data. If your project has specific compliance requirements (e.g. HIPAA-adjacent handling), we scope those requirements explicitly during discovery.",
+        "That's normal — most real projects borrow from a few categories at once, like a booking platform with a CMS blog and a customer portal. Tell us what you're trying to build and we'll scope it as a custom application, whether or not it matches a label on this page.",
     },
   ];
 
@@ -363,7 +422,7 @@ export default function WebServicesPage() {
         areaServed: "Worldwide",
         url: `${SITE_URL}/services/web`,
         description:
-          "Custom website design and web application development, including brochure websites, blogs, e-commerce, clinic management systems, financial trackers, and internal business tooling.",
+          "Custom website design and web application development, including brochure sites, e-commerce, booking and marketplace platforms, blogs and CMS, SPAs and PWAs, CRM/ERP systems, and learning platforms.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Web Design & Development Services",
@@ -420,9 +479,9 @@ export default function WebServicesPage() {
             </h1>
             <p className="text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mb-10">
               From brochure sites and blogs that build your brand, to
-              full-stack applications — e-commerce, clinic management,
-              financial tracking, internal tooling — that run your
-              day-to-day operations.
+              full-stack applications — e-commerce, booking platforms,
+              CRM/ERP systems, learning platforms — that run your day-to-day
+              operations.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -472,6 +531,42 @@ export default function WebServicesPage() {
                 <OfferingCard key={o.title} {...o} />
               ))}
             </div>
+
+            {/* "Don't see it listed?" — catches projects that don't fit a
+                single category, and gives them a clear, descriptive next
+                action instead of leaving them stuck at the end of a list. */}
+            <div className="mt-10 bg-[var(--accent)]/[0.06] border border-[var(--accent)]/20 rounded-3xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 justify-between">
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-11 h-11 rounded-xl bg-[var(--accent)]/15 text-[var(--accent)] flex items-center justify-center shrink-0"
+                  aria-hidden="true"
+                >
+                  <MessageCircle size={20} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white mb-1">
+                    Don&apos;t see what you need?
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed max-w-xl">
+                    Most real projects mix and match a few of these
+                    categories, or need something that isn&apos;t on this
+                    list at all. Tell us what you&apos;re building — we scope
+                    custom web applications outside of any label.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/contact"
+                className="px-6 py-3.5 rounded-xl bg-[var(--accent)] text-white font-semibold hover:bg-opacity-90 transition flex items-center gap-2 group shadow-lg shadow-[var(--accent)]/20 shrink-0 w-fit"
+              >
+                Talk to Us About Your Project
+                <ArrowRight
+                  size={18}
+                  aria-hidden="true"
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -489,17 +584,17 @@ export default function WebServicesPage() {
                 Our Tech Stack
               </h2>
               <p className="text-white/60 text-base sm:text-lg">
-                A modern, fully custom-coded stack — no CMS, no page
+                A modern, fully custom-coded stack — no WordPress, no page
                 builders, no proprietary platforms holding your project
                 hostage.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-6 mb-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               {techStack.map((item) => (
                 <div
                   key={item.title}
-                  className="bg-white/[0.02] border border-white/10 rounded-2xl p-6"
+                  className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 flex flex-col"
                 >
                   <div
                     className="w-11 h-11 rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mb-4"
@@ -510,9 +605,32 @@ export default function WebServicesPage() {
                   <h3 className="text-base font-bold text-white mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-white/55 leading-relaxed">
+                  <p className="text-sm text-white/55 leading-relaxed mb-5">
                     {item.desc}
                   </p>
+                  <ul className="space-y-2 mt-auto">
+                    {item.items.map((tech) => (
+                      <li
+                        key={tech.name}
+                        className="flex items-center gap-2 text-xs text-white/60"
+                      >
+                        <CheckCircle2
+                          size={13}
+                          aria-hidden="true"
+                          className="text-[var(--accent)]/70 shrink-0"
+                        />
+                        <span className="truncate">
+                          {tech.name}
+                          {tech.note ? ` — ${tech.note}` : ""}
+                        </span>
+                        {tech.primary && (
+                          <span className="ml-auto shrink-0 text-[10px] font-semibold uppercase tracking-wide text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full">
+                            Primary
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -637,7 +755,7 @@ export default function WebServicesPage() {
           </div>
         </section>
 
-        {/* 5. FAQ — genuinely helpful for clients, and eligible for FAQ rich results */}
+        {/* 6. FAQ — genuinely helpful for clients, and eligible for FAQ rich results */}
         <section
           aria-labelledby="faq-heading"
           className="py-24 bg-gradient-to-b from-[#0b1120] via-[#090d1a] to-[#0b1120] relative border-t border-white/5"
@@ -660,7 +778,7 @@ export default function WebServicesPage() {
           </div>
         </section>
 
-        {/* 6. CLOSING CTA */}
+        {/* 7. CLOSING CTA */}
         <section
           aria-labelledby="web-cta-heading"
           className="py-20 relative bg-gradient-to-t from-[#090d1a] via-[#0b1120] to-[#0f172a] border-t border-white/5"
