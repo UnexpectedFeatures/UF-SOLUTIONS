@@ -3,17 +3,17 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { 
-  Monitor, 
-  Smartphone, 
-  Palette, 
-  Settings, 
-  RefreshCw, 
-  CheckCircle2, 
-  ChevronDown, 
+import {
+  Monitor,
+  Smartphone,
+  Palette,
+  Settings,
+  RefreshCw,
+  CheckCircle2,
+  ChevronDown,
   ArrowRight,
   Newspaper,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -116,11 +116,7 @@ function DropdownMenu({ items, title, isOpen }) {
         <div
           className={`
             relative p-3
-            ${
-              isTwoCol
-                ? "grid grid-cols-2 gap-2"
-                : "flex flex-col gap-2"
-            }
+            ${isTwoCol ? "grid grid-cols-2 gap-2" : "flex flex-col gap-2"}
           `}
         >
           {items.map((item) => {
@@ -139,9 +135,9 @@ function DropdownMenu({ items, title, isOpen }) {
                     <span className="text-sm font-semibold text-white">
                       {item.label}
                     </span>
-                    <ArrowRight 
-                      size={16} 
-                      className="opacity-0 -translate-x-2 text-blue-400 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" 
+                    <ArrowRight
+                      size={16}
+                      className="opacity-0 -translate-x-2 text-blue-400 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200"
                     />
                   </div>
                   <p className="mt-1 text-xs leading-relaxed text-white/45">
@@ -153,15 +149,16 @@ function DropdownMenu({ items, title, isOpen }) {
           })}
         </div>
         <div className="border-t border-white/10 px-6 py-4 flex justify-between items-center bg-white/[0.03]">
-          <span className="text-xs text-white/35">
-            Need help choosing?
-          </span>
+          <span className="text-xs text-white/35">Need help choosing?</span>
           <Link
             href="/contact"
             className="text-xs font-semibold text-[var(--accent)] hover:text-white flex items-center gap-1 group"
           >
-            Talk to us 
-            <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            Talk to us
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-0.5 transition-transform"
+            />
           </Link>
         </div>
       </div>
@@ -169,7 +166,7 @@ function DropdownMenu({ items, title, isOpen }) {
   );
 }
 
-function MobileAccordion({ items, title, isOpen, onToggle }) {
+function MobileAccordion({ items, title, isOpen, onToggle, onLinkClick }) {
   return (
     <div className="border-b border-white/10">
       <button
@@ -178,9 +175,11 @@ function MobileAccordion({ items, title, isOpen, onToggle }) {
         className="w-full flex items-center justify-between py-4 text-white/80 font-medium"
       >
         {title}
-        <ChevronDown 
-          size={16} 
-          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} 
+        <ChevronDown
+          size={16}
+          className={`transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
         />
       </button>
       <div
@@ -195,6 +194,7 @@ function MobileAccordion({ items, title, isOpen, onToggle }) {
               <Link
                 key={item.label}
                 href={item.href}
+                onClick={onLinkClick}
                 className="flex gap-3 rounded-xl p-3 hover:bg-white/6"
               >
                 <div className="w-9 h-9 shrink-0 rounded-lg bg-white/8 flex items-center justify-center text-white/80">
@@ -270,6 +270,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={navRef}
       className={`
         fixed top-0 left-0 right-0 z-50
         transition-all duration-300
@@ -280,10 +281,7 @@ export default function Navbar() {
         }
       `}
     >
-      <nav
-        ref={navRef}
-        className="max-w-7xl mx-auto h-[80px] px-8 md:px-12 flex items-center"
-      >
+      <nav className="max-w-7xl mx-auto h-[80px] px-8 md:px-12 flex items-center">
         <Link href="/" className="shrink-0 flex items-center" aria-label="UF Software home">
           <Image
             src="/logo.png"
@@ -297,10 +295,7 @@ export default function Navbar() {
 
         <ul className="hidden lg:flex flex-1 justify-center h-full">
           {NAV_ITEMS.map((item) => (
-            <li
-              key={item.label}
-              className="relative h-full flex items-center"
-            >
+            <li key={item.label} className="relative h-full flex items-center">
               {item.children ? (
                 <>
                   <button
@@ -314,9 +309,11 @@ export default function Navbar() {
                     className="px-5 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/10 flex gap-2 items-center"
                   >
                     {item.label}
-                    <ChevronDown 
-                      size={14} 
-                      className={`transition-transform duration-200 ${openDesktopMenu === item.label ? "rotate-180" : ""}`} 
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${
+                        openDesktopMenu === item.label ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
 
@@ -399,6 +396,7 @@ export default function Navbar() {
                     current === item.label ? null : item.label
                   )
                 }
+                onLinkClick={closeMobileMenu}
               />
             ) : (
               <Link
