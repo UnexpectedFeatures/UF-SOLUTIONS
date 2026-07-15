@@ -6,7 +6,7 @@ import Image from "next/image";
 import {
   Monitor,
   Smartphone,
-  Palette,
+  Workflow,
   Settings,
   RefreshCw,
   CheckCircle2,
@@ -35,10 +35,10 @@ const NAV_ITEMS = [
         href: "/services/mobile",
       },
       {
-        label: "Graphics & Design",
-        desc: "Branding, UI/UX, and visual identity",
-        icon: Palette,
-        href: "/services/design",
+        label: "Workflow Automation",
+        desc: "Automate manual processes and connect your tools",
+        icon: Workflow,
+        href: "/services/workflow-automation",
       },
       {
         label: "Custom Software",

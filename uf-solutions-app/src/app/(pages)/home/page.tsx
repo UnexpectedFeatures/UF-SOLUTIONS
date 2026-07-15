@@ -5,7 +5,7 @@ import {
   Monitor,
   Smartphone,
   Settings,
-  Palette,
+  Workflow,
   ArrowRight,
   CheckCircle2,
   FileText,
@@ -54,6 +54,9 @@ import {
  *    be marked up.
  * 8. Update the placeholder values below (SITE_URL, business name, social
  *    links, image paths) with your real domain/assets before deploying.
+ * 9. Graphics & Design has been removed from the core services grid and
+ *    replaced with Workflow Automation, pointing at
+ *    /services/workflow-automation — matches the current service lineup.
  */
 
 const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
@@ -64,14 +67,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `${SITE_NAME} | Custom Web, Mobile & Software Development`,
   description:
-    "We engineer custom web applications, cross-platform mobile apps, bespoke software, and digital design to eliminate your business bottlenecks. Get a free project quote today.",
+    "We engineer custom web applications, cross-platform mobile apps, bespoke software, and workflow automation to eliminate your business bottlenecks. Get a free project quote today.",
   keywords: [
     "custom software development",
     "web application development",
     "mobile app development",
     "custom POS systems",
     "clinic management systems",
-    "graphic design services",
+    "workflow automation services",
     "software consulting",
   ],
   alternates: {
@@ -249,10 +252,10 @@ export default function HomePage() {
       href: "/services/custom",
     },
     {
-      title: "Graphics & Design",
-      desc: "High-impact digital marketing assets, posters, presentation materials, and complete publication layouts meticulously crafted to command attention and scale your brand's digital presence.",
-      icon: Palette,
-      href: "/services/design",
+      title: "Workflow Automation",
+      desc: "Stop wasting hours on manual data entry and repetitive operations. We build reliable automation pipelines that connect your tools, extract data from documents, and never lose a transaction.",
+      icon: Workflow,
+      href: "/services/workflow-automation",
     },
   ];
 
@@ -288,11 +291,11 @@ export default function HomePage() {
     },
     {
       quote:
-        "Our dynamic digital marketing campaign pubmats and platform interface redesign brought immediate conversions. Highly analytical layout execution.",
+        "Our internal invoice processing used to take a full day every week. Now it happens automatically the moment the email lands.",
       author: "Vanguard Media Group",
-      role: "Creative Director",
+      role: "Operations Director",
       rating: 5,
-      email: "creative@vanguardmedia.example.com",
+      email: "operations@vanguardmedia.example.com",
       avatar: "https://ui-avatars.com/api/?name=Vanguard+Media&background=1e293b&color=fff",
     },
     {
@@ -333,7 +336,7 @@ export default function HomePage() {
     },
     {
       quote:
-        "The rebrand and marketing assets they designed made our launch feel like a company ten times our size.",
+        "They connected our CRM and payment provider so leads stop falling through the cracks. Genuinely changed how our sales team works.",
       author: "Nimbus Fitness Studio",
       role: "Owner",
       rating: 4,
