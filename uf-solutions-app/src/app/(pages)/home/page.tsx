@@ -152,7 +152,7 @@ function ServiceCard({ title, desc, icon: Icon, href }: ServiceCardProps) {
       </div>
       <Link
         href={href}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-white transition-colors group/btn"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[color-mix(in_srgb,var(--accent)_100%,white_25%)] hover:text-white transition-colors group/btn"
       >
         Read More <span className="sr-only">about {title}</span>
         <ArrowRight size={16} aria-hidden="true" className="group-hover/btn:translate-x-1 transition-transform" />
