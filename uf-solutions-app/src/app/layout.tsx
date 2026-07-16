@@ -14,25 +14,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
+// Update this once your domain goes live
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ufsoftwaresolutionsph.vercel.app";
 const SITE_NAME = "UF Software Solutions PH";
-const OG_IMAGE = `${SITE_URL}/og-default.jpg`; // TODO: add a real 1200x630 social preview image
+const OG_IMAGE = `${SITE_URL}/og-default.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Custom Web & Mobile App Development`,
+    default: `${SITE_NAME} | Custom Software & Workflow Automation Systems`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "We engineer clean systems to eliminate your business bottlenecks — custom websites, web applications, and cross-platform mobile apps built around how your business actually runs.",
+    "We build deterministic custom web apps, cross-platform mobile software, and high-reliability AI workflow automation systems that eliminate operational bottlenecks.",
   keywords: [
-    "web development philippines",
-    "mobile app development philippines",
-    "custom software development",
-    "web application development",
-    "flutter app development",
+    // 1. Workflow Automation & AI Systems (New Service Tier)
+    "workflow automation systems",
+    "ai workflow automation philippines",
+    "business process automation software",
+    "custom ai integration services",
+    "document data extraction pipeline",
+
+    // 2. High-Intent Commercial & Agency Terms
+    "custom web application development",
+    "software development agency philippines",
+    "b2b custom software solutions",
+    "full stack engineering company philippines",
+
+    // 3. Tech-Stack Specifics (Attracts High-Quality Clients)
     "next.js development agency",
+    "nest.js backend development",
+    "flutter mobile app development",
+    "postgresql enterprise solutions",
   ],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
@@ -44,9 +57,9 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | Custom Web & Mobile App Development`,
+    title: `${SITE_NAME} | Custom Software & Workflow Automation Systems`,
     description:
-      "Custom websites, web applications, and cross-platform mobile apps built around how your business actually runs.",
+      "Engineered software solutions: Next.js web applications, Flutter mobile apps, and enterprise-grade workflow automation systems.",
     images: [
       {
         url: OG_IMAGE,
@@ -59,9 +72,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Custom Web & Mobile App Development`,
+    title: `${SITE_NAME} | Custom Software & Workflow Automation Systems`,
     description:
-      "Custom websites, web applications, and cross-platform mobile apps built around how your business actually runs.",
+      "Engineered software solutions: Next.js web applications, Flutter mobile apps, and enterprise-grade workflow automation systems.",
     images: [OG_IMAGE],
   },
   robots: {

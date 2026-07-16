@@ -70,7 +70,7 @@ function GithubIcon({ size = 16, ...props }) {
   );
 }
 
-const SITE_NAME = "UF Software Solutions";
+const SITE_NAME = "UF Software Solutions PH";
 const EMAIL = "ufsoftwaresolutions@gmail.com"; 
 const PHONE = "+1 (555) 123-4567"; 
 const ADDRESS = "Bagumbong, Caloocan City, Casa Asuncion brgy 171";
@@ -85,7 +85,7 @@ const SERVICE_LINKS = [
   { name: "Website Design & Application Development", href: "/services/web" },
   { name: "Mobile Application Development", href: "/services/mobile" },
   { name: "Custom Software Development", href: "/services/custom" },
-  { name: "Graphic Design", href: "/services/graphic-design" },
+  { name: "Workflow Automation", href: "/services/workflow-automation" },
 ];
 
 const RESOURCE_LINKS = [

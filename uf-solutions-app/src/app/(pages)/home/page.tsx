@@ -44,10 +44,15 @@ import {
  * 5. Decorative icons get aria-hidden="true" so screen readers (and
  *    crawlers building an accessibility tree) skip over pure decoration
  *    instead of announcing meaningless icon labels.
- * 6. "Read More" links now have a descriptive aria-label per card
- *    (e.g. "Read more about Website Design & Application") — generic link
- *    text like bare "Read More" repeated four times is bad for screen
- *    readers and provides no contextual signal to search engines.
+ * 6. "Read More" links now carry a visible "Read More" plus a `sr-only`
+ *    span with the descriptive part ("about {title}"). This matters
+ *    because some link-text audits (Lighthouse/SEO crawlers included)
+ *    check a link's *visible text content*, not its computed aria-label —
+ *    so a bare "Read More" with only an aria-label can still get flagged
+ *    as non-descriptive even though screen readers handle it correctly.
+ *    Putting the description in the text content (visually hidden via
+ *    sr-only) satisfies both real assistive tech and content-scanning
+ *    audit tools at once.
  * 7. Testimonials now use semantic <figure>/<blockquote>/<figcaption>
  *    markup instead of a plain <div>+<p>, which better matches how search
  *    engines and rich-result parsers expect quoted testimonial content to
@@ -138,10 +143,9 @@ function ServiceCard({ title, desc, icon: Icon, href }: ServiceCardProps) {
       </div>
       <Link
         href={href}
-        aria-label={`Read more about ${title}`}
         className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-white transition-colors group/btn"
       >
-        Read More
+        Read More <span className="sr-only">about {title}</span>
         <ArrowRight size={16} aria-hidden="true" className="group-hover/btn:translate-x-1 transition-transform" />
       </Link>
     </div>
