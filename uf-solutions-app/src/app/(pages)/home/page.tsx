@@ -62,6 +62,15 @@ import {
  * 9. Graphics & Design has been removed from the core services grid and
  *    replaced with Workflow Automation, pointing at
  *    /services/workflow-automation — matches the current service lineup.
+ * 10. FIX: the hero "trust indicators" <dl> previously had each <div>
+ *     contain <dt> (sr-only) + <dd> + a plain <p> label. A <dl>'s child
+ *     <div> may only directly contain properly-ordered <dt>/<dd> pairs —
+ *     the extra <p> broke that pattern and failed the accessibility-tree
+ *     "dl > properly-ordered dt/dd" audit. Fixed by making the visible
+ *     label itself the <dt> (it's semantically the term) and the number
+ *     the <dd> (the description of that term), then using
+ *     `flex-col-reverse` to keep the number rendered visually on top
+ *     while the DOM order stays dt → dd.
  */
 
 const SITE_URL = "https://www.example.com"; // TODO: replace with your real domain
@@ -468,43 +477,47 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* Trust Indicators */}
+              {/*
+                Trust Indicators — FIXED <dl> structure.
+                Each stat's <div> now directly contains a properly-ordered
+                <dt> (the visible label, semantically the "term") followed
+                by a <dd> (the number, the "description" of that term).
+                `flex-col-reverse` keeps the number rendered on top visually
+                without breaking DOM order, so this passes the "dl must
+                only directly contain properly-ordered dt/dd groups" audit.
+              */}
               <dl className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-white/10 mt-12">
-                <div>
-                  <dt className="sr-only">Years of experience</dt>
+                <div className="flex flex-col-reverse">
+                  <dt className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
+                    Years Experience
+                  </dt>
                   <dd className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                     4+
                   </dd>
-                  <p className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
-                    Years Experience
-                  </p>
                 </div>
-                <div>
-                  <dt className="sr-only">Projects completed</dt>
+                <div className="flex flex-col-reverse">
+                  <dt className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
+                    Projects Done
+                  </dt>
                   <dd className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                     20+
                   </dd>
-                  <p className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
-                    Projects Done
-                  </p>
                 </div>
-                <div>
-                  <dt className="sr-only">Happy clients</dt>
+                <div className="flex flex-col-reverse">
+                  <dt className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
+                    Happy Clients
+                  </dt>
                   <dd className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                     30+
                   </dd>
-                  <p className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
-                    Happy Clients
-                  </p>
                 </div>
-                <div>
-                  <dt className="sr-only">Client satisfaction rate</dt>
+                <div className="flex flex-col-reverse">
+                  <dt className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
+                    Satisfaction Rate
+                  </dt>
                   <dd className="text-3xl sm:text-4xl font-extrabold text-[var(--accent)] tracking-tight">
                     100%
                   </dd>
-                  <p className="text-[11px] text-white/40 uppercase tracking-widest font-medium mt-1">
-                    Satisfaction Rate
-                  </p>
                 </div>
               </dl>
             </div>
