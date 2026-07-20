@@ -117,6 +117,19 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/*
+          Perf audit flagged a ~1,200ms critical path partly caused by the
+          browser not knowing to connect to Sanity's asset CDN until it
+          parses the first <img> tag pointing there. preconnect starts the
+          DNS + TLS handshake immediately, in parallel with everything
+          else, rather than waiting to discover the need for it later.
+          dns-prefetch is a lightweight fallback for browsers that don't
+          support preconnect.
+        */}
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Navbar />
         <main className="flex-1">{children}</main>
