@@ -284,7 +284,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto h-[80px] px-8 md:px-12 flex items-center">
         <Link href="/" className="shrink-0 flex items-center" aria-label="UF Software home">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="UF Software Logo"
             width={794}
             height={558}
