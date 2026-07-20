@@ -37,7 +37,7 @@ export function middleware(request: NextRequest) {
         .trim()
     : `
       default-src 'self';
-      script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: http: 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
+      script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
       style-src 'self' 'unsafe-inline';
       img-src 'self' blob: data: https://cdn.sanity.io;
       connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io;
