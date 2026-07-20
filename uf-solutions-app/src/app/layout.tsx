@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -92,11 +93,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerList = await headers();
+
+  // Read back the nonce set by middleware for this request. Not consumed
+  // anywhere yet — application-level JSON-LD <script> tags don't need it,
+  // since CSP's script-src only governs executable script (JS/module/
+  // importmap), not application/ld+json. This becomes required the moment
+  // you add a next/script component or a hand-written *executable* inline
+  // <script>: pass it as `nonce={nonce}` on that element so it's allowed
+  // to run under the CSP set in middleware.ts.
+  const nonce = headerList.get("x-nonce") || undefined;
+  void nonce; // silence no-unused-vars until the above applies
+
   return (
     <html
       lang="en"
